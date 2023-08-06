@@ -3,6 +3,7 @@
 namespace Konnco\FilamentImport\Actions;
 
 use Closure;
+use Filament\Actions\Concerns\CanCustomizeProcess;
 use Filament\Forms\ComponentContainer;
 use Filament\Forms\Components\Field;
 use Filament\Forms\Components\Fieldset;
@@ -11,12 +12,11 @@ use Filament\Forms\Components\Hidden;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Toggle;
 use Filament\Pages\Actions\Action;
-use Filament\Support\Actions\Concerns\CanCustomizeProcess;
 use Konnco\FilamentImport\Concerns\HasActionMutation;
 use Konnco\FilamentImport\Concerns\HasActionUniqueField;
 use Konnco\FilamentImport\Concerns\HasTemporaryDisk;
 use Konnco\FilamentImport\Import;
-use Livewire\TemporaryUploadedFile;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use Maatwebsite\Excel\Concerns\Importable;
 
 class ImportAction extends Action
@@ -126,7 +126,7 @@ class ImportAction extends Action
 
         $this->form(
             array_merge(
-                $this->getFormSchema(),
+                $this->form,
                 [
                     Fieldset::make(__('filament-import::actions.match_to_column'))
                         ->schema($fields)
